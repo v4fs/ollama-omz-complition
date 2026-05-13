@@ -14,19 +14,19 @@ $ ollama show --<Tab>
 
 ## Install
 
+> Already cloned the repo? Swap each `curl ...` for `cp _ollama <destination>`.
+
 **oh-my-zsh:**
 
 ```sh
-mkdir -p "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/completions"
-cp _ollama "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/completions/_ollama"
+curl -fsSL --create-dirs -o "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/completions/_ollama" https://raw.githubusercontent.com/v4fs/ollama-omz-complition/main/_ollama
 omz reload
 ```
 
-**plain zsh:** copy `_ollama` into any directory on your `$fpath`, e.g.:
+**plain zsh:** download `_ollama` into any directory on your `$fpath`, e.g.:
 
 ```sh
-mkdir -p ~/.zsh/completions
-cp _ollama ~/.zsh/completions/_ollama
+curl -fsSL --create-dirs -o ~/.zsh/completions/_ollama https://raw.githubusercontent.com/v4fs/ollama-omz-complition/main/_ollama
 ```
 
 Then add this to `~/.zshrc` (before `compinit`):
