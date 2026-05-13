@@ -2,8 +2,8 @@
 
 Zsh tab-completion for the [`ollama`](https://ollama.com) CLI.
 
-Completes subcommands, flags, and — dynamically — your installed model names
-(via `ollama list`) and running models (via `ollama ps`).
+Completes subcommands, flags, and — dynamically — your installed models
+(`ollama list`) and running models (`ollama ps`).
 
 ```
 $ ollama run <Tab>
@@ -12,28 +12,24 @@ $ ollama show --<Tab>
 --help        --license     --modelfile   --parameters  --system      --template    --verbose
 ```
 
-## Install (oh-my-zsh)
+## Install
 
-Oh-my-zsh auto-adds `$ZSH_CUSTOM/completions/` to `$fpath` before `compinit`,
-so just drop `_ollama` in there:
+**oh-my-zsh:**
 
 ```sh
 mkdir -p "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/completions"
 cp _ollama "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/completions/_ollama"
-rm -f ~/.zcompdump*
-exec zsh
+omz reload
 ```
 
-## Install (plain zsh)
-
-Put `_ollama` in any directory on your `$fpath`. A common choice:
+**plain zsh:** copy `_ollama` into any directory on your `$fpath`, e.g.:
 
 ```sh
 mkdir -p ~/.zsh/completions
 cp _ollama ~/.zsh/completions/_ollama
 ```
 
-Then in `~/.zshrc`, before `compinit`:
+Then add this to `~/.zshrc` (before `compinit`):
 
 ```zsh
 fpath=(~/.zsh/completions $fpath)
@@ -43,22 +39,18 @@ autoload -Uz compinit && compinit
 Reload:
 
 ```sh
-rm -f ~/.zcompdump*
 exec zsh
 ```
 
 ## Uninstall
 
-Delete the `_ollama` file from wherever you installed it and rebuild the cache:
-
 ```sh
-rm -f ~/.zcompdump*
-exec zsh
+rm /path/to/_ollama && exec zsh
 ```
 
 ## Notes
 
-- Targets ollama 0.15.x. New subcommands/flags in later versions won't complete
-  until `_ollama` is updated.
-- Model-name completion shells out to `ollama list` / `ollama ps`, so it
-  requires a reachable Ollama server (respects `OLLAMA_HOST`).
+- The whole thing was one shoted with Claude
+- Targets ollama 0.15.x. Newer subcommands/flags won't complete until `_ollama` is updated.
+- Model-name completion calls `ollama list` / `ollama ps`, so a reachable Ollama server is required (respects `OLLAMA_HOST`).
+- If completion doesn't appear after reload, clear zsh's cache: `rm -f ~/.zcompdump* && exec zsh`.
