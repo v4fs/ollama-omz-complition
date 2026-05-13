@@ -4,16 +4,16 @@
 
 _ollama_local_models() {
   local -a models
-  local line
   # Skip header row; first column is the model name (e.g. "llama3:8b").
+  # Use compadd so the colon in "name:tag" is not parsed as a description separator.
   models=(${(f)"$(command ollama list 2>/dev/null | awk 'NR>1 && $1!="" {print $1}')"})
-  _describe -t models 'local model' models
+  compadd -X 'local models' -a models
 }
 
 _ollama_running_models() {
   local -a models
   models=(${(f)"$(command ollama ps 2>/dev/null | awk 'NR>1 && $1!="" {print $1}')"})
-  _describe -t models 'running model' models
+  compadd -X 'running models' -a models
 }
 
 _ollama_integrations() {
