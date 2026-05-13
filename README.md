@@ -19,14 +19,14 @@ $ ollama show --<Tab>
 **oh-my-zsh:**
 
 ```sh
-curl -fsSL --create-dirs -o "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/completions/_ollama" https://raw.githubusercontent.com/v4fs/ollama-omz-complition/main/_ollama
+curl -fsSL --create-dirs -o "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/completions/_ollama" https://raw.githubusercontent.com/v4fs/ollama-omz-completion/main/_ollama
 omz reload
 ```
 
 **plain zsh:** download `_ollama` into any directory on your `$fpath`, e.g.:
 
 ```sh
-curl -fsSL --create-dirs -o ~/.zsh/completions/_ollama https://raw.githubusercontent.com/v4fs/ollama-omz-complition/main/_ollama
+curl -fsSL --create-dirs -o ~/.zsh/completions/_ollama https://raw.githubusercontent.com/v4fs/ollama-omz-completion/main/_ollama
 ```
 
 Then add this to `~/.zshrc` (before `compinit`):
